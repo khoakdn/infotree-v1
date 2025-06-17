@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: white;
+    animation: backgroundPulse 10s infinite alternate;
+  }
+  svg {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    transition: transform 0.6s ease-in-out;
+  }
+  .circle {
+    stroke: none;
+    transform-origin: center;
+    transform: scale(0);
+    animation: grow 0.8s ease-out forwards, sway 4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+    cursor: pointer;
+    transition: transform 0.5s, fill 0.5s, filter 0.5s;
+  }
+  .circle.static {
+    animation: grow 0.8s ease-out forwards;
+  }
+  .circle.zoomed {
+    filter: drop-shadow(0 0 15px #FFD700);
+  }
+  .circle:hover {
+    transform: scale(1.1);
+    fill: #FFD700 !important;
+  }
+  .branch {
+    fill: none;
+    stroke: #444;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: draw 1s ease-out forwards;
+  }
+  .trunk-shape {
+    fill: #8B5A2B;
+    stroke: #5C4033;
+    stroke-width: 4;
+  }
+  text {
+    font-family: Arial, sans-serif;
+    fill: white;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+  }
+  .project-box {
+    position: absolute;
+    background: linear-gradient(135deg, #fff8e1, #fffde7);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    padding: 16px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    display: none;
+    z-index: 10;
+    min-width: 240px;
+    animation: fadeZoom 0.4s ease;
+    transform-origin: top left;
+    border: 1px solid #eee;
+  }
+  .project-box::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.1));
+  }
+  .project-box .close-btn {
+    float: right;
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  .project-box .close-btn:hover {
+    color: #f00;
+  }
+  @keyframes grow {
+    to { transform: scale(1); }
+  }
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes sway {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1) rotate(1deg); }
+    100% { transform: scale(1) rotate(-1deg); }
+  }
+  @keyframes fadeZoom {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes backgroundPulse {
+    0% { background-position: center; }
+    100% { background-position: 80% 80%; }
+  }
